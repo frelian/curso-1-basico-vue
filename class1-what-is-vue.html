@@ -1,0 +1,60 @@
+<script type="text/javascript" src="https://cdn.jsdelivr.net/npm/vue@2.6.14/dist/vue.js"></script>
+
+<div id="app">
+    <h1>Class 1 - What is Vue</h1>
+
+    <form action="" v-on:submit.prevent="saveTask">
+        <input v-model="newTask" type="text">
+        <input type="submit" value="Save" />   
+    </form>
+    <hr>
+    <ul>
+        <li v-for="task in myTasks">
+        {{ task }}
+        </li>
+    </ul>
+</div>
+
+<script>
+    // Vue
+
+    // Creo instancia de Vue
+    // con propiedad "el" de elemento
+    // propiedad "data" es el modelo
+    new Vue({
+    el: "#app", // tome el elemento con id app
+    data: {
+        newTask: '', // Como asociar esta propiedad del modelo con un elemento del DOM ? Rta: con una directiva, e inician con "v-" en la etiqueta HTML
+        myTasks: [],
+    },
+    methods: {
+        
+        saveTask() {
+            this.myTasks.push(this.newTask); // This siempre hace referencia al modelo
+            
+            // Ya no sera necesario document.getElementById(id); es decir no es necesario ir al DOM
+            this.newTask = '';   
+        }
+    }
+    })
+
+
+    /* Codigo vainilla JS puro
+    const form  = document.querySelector("form");
+    const ul    = document.querySelector("ul");
+    const input = document.querySelector("input[type='text']");
+    const tasks  = [];
+
+    form.onsubmit = event => {
+        event.preventDefault();
+        tasks.push(input.value);
+    
+        var li = document.createElement("li");
+        li.textContent = input.value;
+        ul.appendChild(li);
+        input.value = null;
+    
+        console.log(tasks);
+    }
+    */
+</script>

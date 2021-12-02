@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>Class 4 - List rendering</title>
+</head>
+<body>
+
+	<div id="app">
+		<h4>Class 4 - List rendering - v-for directive</h4>
+		<h5>Guide: https://vuejs.org/v2/guide/list.html#Mapping-an-Array-to-Elements-with-v-for</h5>
+
+		<h6>Objects:</h5>
+		<p v-for="(value, property) in users">{{ value }} : {{ property }}</p>
+		<br>
+
+		<h6>Array:</h5>
+        <lu>
+			<li v-for="(task, index) in tasks">{{ task.name }} - {{ index }}</li>
+		</lu>
+	</div>
+
+	<script type="text/javascript" src="https://cdn.jsdelivr.net/npm/vue@2.6.14/dist/vue.js"></script>
+	<script>
+		new Vue({
+			el: "#app",
+            data: {
+                users: {
+                    username: 'juanwmedia',
+                    role: 'admin'
+				},
+				tasks: [
+					{ name: 'Aprender JavaScript moderno', time: 3 },
+                    { name: 'Aprender Vue.js', time: 7 },
+                    { name: 'Reparar el coche', time: 22 },
+                    { name: 'Viajar más', time: 16 },
+                    { name: 'Comprar la cena', time: 12 },
+                    { name: 'Mejorar como desarrollador', time: 9 },
+                    { name: 'Dar un curso', tiemtimepo: 14 },
+				]
+            },
+		});
+
+		Vue.config.devtools = true;
+	</script>
+</body>
+</html>
