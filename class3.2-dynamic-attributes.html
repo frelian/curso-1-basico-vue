@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>Class 3.2 - Dynamic Attributes and computed properties</title>
+</head>
+<body>
+
+	<div id="app">
+		<h4>Class 3.2 - Dynamic Attributes and computed properties</h4>
+
+        <input v-model="width" type="range">Width
+		<br>
+		<input v-model="height" type="range">Height
+		<br>
+		<img :src="fullUrl" alt="">
+		<br>
+		Image url: {{ fullUrl }}
+	</div>
+
+	<script type="text/javascript" src="https://cdn.jsdelivr.net/npm/vue@2.6.14/dist/vue.js"></script>
+	<script>
+		new Vue({
+			el: "#app",
+            data: {
+                link: "https://www.vuejs.org",
+				baseUrl: "https://placekitten.com",
+				width: 50,
+				height: 50,
+            },
+			computed: {
+				fullUrl() {
+					return `${this.baseUrl}/${this.width*3}/${this.height*3}`
+				}
+			}
+		});
+
+		Vue.config.devtools = true;
+	</script>
+</body>
+</html>

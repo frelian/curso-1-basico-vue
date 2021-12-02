@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>Vue Devtools</title>
+</head>
+<body>
+
+	<div id="app">
+		<h1>{{ tema }}</h1>
+        <hr>
+        <p>
+            Instalar Vue DevTools del market de google extensions,  darle permisos de "Allow access to file URLs" y con el inspector en la pestaña Vue. Con console 
+            se puede digitar $vm0 .....
+        </p>
+	</div>
+
+	<script type="text/javascript" src="https://cdn.jsdelivr.net/npm/vue@2.6.14/dist/vue.js"></script>
+	<script>
+		new Vue({
+			el: "#app",
+			data: {
+				tema: "Vue Devtools",
+			}
+		});
+
+		Vue.config.devtools = true;
+	</script>
+</body>
+</html>

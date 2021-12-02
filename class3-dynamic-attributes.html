@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>Class 3 - Dynamic Attributes</title>
+</head>
+<body>
+
+	<div id="app">
+        <h4>Class 3.1 - Dynamic Attributes</h4>
+        <input type="text" v-model="link">
+		<a v-bind:href="link">{{ link }}</a>
+	</div>
+
+	<script type="text/javascript" src="https://cdn.jsdelivr.net/npm/vue@2.6.14/dist/vue.js"></script>
+	<script>
+		new Vue({
+			el: "#app",
+            data: {
+                link: "https://www.vuejs.org"
+            },
+		});
+
+		Vue.config.devtools = true;
+	</script>
+</body>
+</html>
