@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>Class 6 - Events (v-on directive)</title>
+</head>
+<body>
+
+	<div id="app">
+		<h4>Class 6 - Events (v-on directive)</h4>
+		<h5>Guide: https://vuejs.org/v2/guide/events.html</h5>
+
+        <!-- <form v-on:submit.prevent="saveTask" > -->
+        <form v-on:submit.prevent="saveTask" >
+            <input v-model="newTask" type="text" placeholder="Task"
+                @keyUp="saveTask">
+            <input type="submit" value="Save Task">
+        </form>
+        <br>
+
+        <input v-model="time" type="range">{{ time }}
+        <br>
+        <input v-model="search" type="search" placeholder="Find task">
+
+		<h6>Objects:</h5>
+		<p v-for="(value, property) in users">{{ value }} : {{ property }}</p>
+		<hr>
+
+		<h6>Array:</h5>
+        <lu>
+			<li v-for="task in taskFilter">{{ task.name }} - {{ task.time }}</li>
+		</lu>
+	</div>
+
+	<script type="text/javascript" src="https://cdn.jsdelivr.net/npm/vue@2.6.14/dist/vue.js"></script>
+	<script>
+        /*
+        // Tradicional
+        window.onload = () => {
+            const form  = document.querySelector("form")
+            const input = document.querySelector("input[type=text]")
+
+            form.onsubmit = (event) => {
+                event.preventDefault();
+                app.tasks.unshift({
+                    name: input.value,
+                    time: 50, 
+                });
+                input.value = null;
+            }
+        };
+        */
+
+        // With VueJs
+		const app = new Vue({
+			el: "#app",
+            data: {
+                newTask: '',
+                time: 0,
+                search: '',
+                users: {
+                    username: 'juanwmedia',
+                    role: 'admin'
+				},
+				tasks: [
+					{ name: 'Aprender JavaScript moderno', time: 3 },
+                    { name: 'Aprender Vue.js', time: 87 },
+                    { name: 'Reparar el coche', time: 21 },
+                    { name: 'Viajar más', time: 60 },
+                    { name: 'Comprar la cena', time: 24 },
+                    { name: 'Mejorar como desarrollador', time: 19 },
+                    { name: 'Dar un curso', time: 76 },
+				]
+            },
+            methods: {
+                saveTask() {
+                    if ( this.newTask !== '' ) {
+                        console.log("No esta vacio !!", this.newTask)
+                        this.tasks.unshift({
+                            name: this.newTask,
+                            time: Math.floor(Math.random() * 100),
+                        })
+                        // comentado para mostrar la directiva keyUp this.newTask = null;
+                    }
+                }
+            },
+            computed: {
+                taskFilter() {
+                    return this.tasks.filter(task => {
+                        return task.time <= this.time && task.name.includes(this.search);
+                    })
+                }
+            }
+		});
+
+		Vue.config.devtools = true;
+	</script>
+</body>
+</html>
