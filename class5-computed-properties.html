@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>Class 5 - Computed properties</title>
+</head>
+<body>
+
+	<div id="app">
+		<h4>Class 5 - Computed properties</h4>
+		<h5>Guide: https://vuejs.org/v2/guide/computed.html</h5>
+
+        <input v-model="time" type="range">{{ time }}
+        <br>
+        <input v-model="search" type="search" placeholder="Find task">
+
+		<h6>Objects:</h5>
+		<p v-for="(value, property) in users">{{ value }} : {{ property }}</p>
+		<hr>
+
+		<h6>Array:</h5>
+        <lu>
+			<li v-for="task in taskFilter">{{ task.name }} - {{ task.time }}</li>
+		</lu>
+	</div>
+
+	<script type="text/javascript" src="https://cdn.jsdelivr.net/npm/vue@2.6.14/dist/vue.js"></script>
+	<script>
+		new Vue({
+			el: "#app",
+            data: {
+                time: 0,
+                search: '',
+                users: {
+                    username: 'juanwmedia',
+                    role: 'admin'
+				},
+				tasks: [
+					{ name: 'Aprender JavaScript moderno', time: 3 },
+                    { name: 'Aprender Vue.js', time: 87 },
+                    { name: 'Reparar el coche', time: 21 },
+                    { name: 'Viajar más', time: 60 },
+                    { name: 'Comprar la cena', time: 24 },
+                    { name: 'Mejorar como desarrollador', time: 19 },
+                    { name: 'Dar un curso', time: 76 },
+				]
+            },
+            computed: {
+                taskFilter() {
+                    return this.tasks.filter(task => {
+                        return task.time <= this.time && task.name.includes(this.search);
+                    })
+                }
+            }
+		});
+
+		Vue.config.devtools = true;
+	</script>
+</body>
+</html>
