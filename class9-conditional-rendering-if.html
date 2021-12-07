@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>Class 9 Conditional rendering (IF)</title>
+
+    <style>
+        html, body {
+            height: 100%;
+        }
+
+        body {
+            font-family: sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        main {
+            max-width: 800px;
+            border: 1px solid gray;
+            padding: 20px;
+        }
+
+        form > * {
+            display: block;
+            width: 100%;
+        }
+
+        input[type="text"], textarea {
+            border: none;
+            background-color: lightgray;
+            padding: 5px;
+        }
+
+        label, div, input[type="submit"] {
+            margin-top: 10px;
+            margin-bottom: 5px;
+        }
+
+        div > * {
+            vertical-align: middle;
+        }
+
+        label:first-of-type {
+            margin-top: 0;
+        }
+    </style>
+</head>
+<body>
+
+	<main id="app">
+        <form action="">
+            <label for="name">Name</label>
+            <input type="text" id="name">
+            
+
+            <label for="last-name">Last name</label>
+            <input type="text" id="last-name">
+           
+
+            <label for="address">Dirección de envío</label>
+            <select v-model="address" id="address">
+                <option value="sameAddress">Misma dirección de facturación</option>
+                <option value="newAddress">Introducir nueva dirección</option>
+            </select>
+         
+            <template v-if="address === 'newAddress'">
+                <label for="new-address">Nueva dirección</label>
+                <textarea id="new-address" cols="20" rows="3"></textarea>
+            </template>
+          
+            <div>
+                <input v-model="check" type="checkbox">
+                <span>He leído y acepto la política de privacidad.</span>
+            </div>
+
+
+            <input v-if="check === true" type="submit" value="Enviar">
+            <p v-else>Debes marcar el checkbox para poder enviar el formulario.</p>
+
+        </form>
+	</div>
+
+	<script type="text/javascript" src="https://cdn.jsdelivr.net/npm/vue@2.6.14/dist/vue.js"></script>
+	<script>
+        const vm = new Vue({
+            el: "#app",
+            data: {
+                address: "sameAddress",
+                check: false,
+            },
+        });
+		Vue.config.devtools = true;
+	</script>
+</body>
+</html>
