@@ -5,3 +5,4 @@
 * Class 4: List rendering using for directive (v-for:)
 * Class 5: Computed properties
 * Class 6: Events in Vue (v-on / @ directive)
+* Class 7: The vue instance

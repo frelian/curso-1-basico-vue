@@ -3,17 +3,17 @@
 <head>
 	<meta charset="utf-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
-	<title>Class 6.2 - Events (v-on directive)</title>
+	<title>Class 6.1 - Events (v-on directive) KeyUp</title>
 </head>
 <body>
 
 	<div id="app">
-		<h4>Class 6.2 - Events (v-on directive) no keyUp event</h4>
+		<h4>Class 6.1 - Events (v-on directive) KeyUp</h4>
 		<h5>Guide: https://vuejs.org/v2/guide/events.html</h5>
 
-        <form v-on:submit.prevent="saveTask" >
-        <form v-on:submit.prevent="saveTask" >
-            <input v-model="newTask" type="text" placeholder="Task">
+        <form>
+            <input v-model="newTask" type="text" placeholder="Task"
+                @keyUp="saveTask">
             <input type="submit" value="Save Task">
         </form>
         <br>
@@ -39,7 +39,6 @@
         window.onload = () => {
             const form  = document.querySelector("form")
             const input = document.querySelector("input[type=text]")
-
             form.onsubmit = (event) => {
                 event.preventDefault();
                 app.tasks.unshift({
@@ -80,7 +79,7 @@
                             name: this.newTask,
                             time: Math.floor(Math.random() * 100),
                         })
-                        this.newTask = null;
+                        // comentado para mostrar la directiva keyUp this.newTask = null;
                     }
                 }
             },
