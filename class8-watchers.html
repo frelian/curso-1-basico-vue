@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>Class 8 - Vue watchers</title>
+</head>
+<body>
+
+	<div id="app">
+        <h3>Cambia tu contraseña</h3>
+        <input v-model="password" type="text">
+        <br>
+        <p>{{ state }}</p>
+	</div>
+
+	<script type="text/javascript" src="https://cdn.jsdelivr.net/npm/vue@2.6.14/dist/vue.js"></script>
+	<script>
+        const vm = new Vue({
+            el: "#app",
+            data: {
+                password: null,
+                state: "Introduce nueva contraseña...",
+                notValid: [
+                    "admin",
+                    "12345",
+                    "password"
+                ],
+            },
+            watch: {
+                password(newPassword, oldPassword) {
+                    
+                    if ( this.notValid.indexOf(newPassword) > -1 ) {
+                        this.state = "Contraseña no valida.";
+                        console.log(newPassword, oldPassword)
+                        return false;
+                    }
+
+                    if ( newPassword.length < 5 ) {
+                        this.state = "La contraseña debe tener al menos 5 caracteres...";
+                        return false;
+                    }
+
+                    this.state = "Contraseña válida."
+                }
+            }
+        });
+		Vue.config.devtools = true;
+	</script>
+</body>
+</html>

@@ -6,3 +6,4 @@
 * Class 5: Computed properties
 * Class 6: Events in Vue (v-on / @ directive)
 * Class 7: The vue instance
+* Class 8: Vue watchers: example: password validate
