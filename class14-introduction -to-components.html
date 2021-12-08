@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>Class 14 introduction to components</title>
+    <style>
+        .post {
+            border: 1px solid black;
+            border-radius: 5px;
+            font-family: sans-serif;
+            text-align: justify;
+            text-justify: inter-word;
+            margin: 10px;
+            padding: 10px;
+        }
+    </style>
+</head>
+<body>
+
+	<main id="app">
+        <post v-for="post in posts" :post="post"></post>
+        <hr>
+        <pre>{{ $data }}</pre>
+	</div>
+
+	<script src="https://cdn.jsdelivr.net/npm/vue@2.6.14/dist/vue.js"></script>
+	<script>
+        Vue.component('post', {
+            props: ['post'], 
+            template: `<article class="post">
+                <h2 class="post__title">{{ post.title }}</h2>
+                <p class="post_content">{{ post.content }}</p>
+                </article>`,
+        })
+        const vm = new Vue({
+            el: "#app",
+            data: {
+                posts: [
+                    {
+                        title: "Esto es un titulo de post",
+                        content: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam ornare bibendum tellus. Nam ut felis eu urna iaculis lacinia nec vitae metus. Pellentesque quis diam lorem. Fusce commodo sollicitudin ante sit amet tincidunt. Mauris efficitur, leo in scelerisque fringilla, justo urna sagittis odio"
+                    },
+                    {
+                        title: "Esto es un nuevo titulo de post",
+                        content: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam ornare bibendum tellus. Nam ut felis eu urna iaculis lacinia nec vitae metus. Pellentesque quis diam lorem. Fusce commodo sollicitudin ante sit amet tincidunt. Mauris efficitur, leo in scelerisque fringilla, justo urna sagittis odio"
+                    },
+                    {
+                        title: "Esto es otro titulo de post",
+                        content: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam ornare bibendum tellus. Nam ut felis eu urna iaculis lacinia nec vitae metus. Pellentesque quis diam lorem. Fusce commodo sollicitudin ante sit amet tincidunt. Mauris efficitur, leo in scelerisque fringilla, justo urna sagittis odio"
+                    }
+                ],
+            },
+        });
+		Vue.config.devtools = true;
+	</script>
+</body>
+</html>

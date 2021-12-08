@@ -12,3 +12,4 @@
 * Class 11: Ajax with AXIOS
 * Class 12: Data binding with styles and class
 * Class 13: Form Input Bindings, localStorage and deep watch
+* Class 14: introduction to components
