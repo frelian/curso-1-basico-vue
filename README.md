@@ -8,3 +8,4 @@
 * Class 7: The vue instance
 * Class 8: Vue watchers: example: password validate
 * Class 9: Conditional rendering (IF) diferente between v-if (delete element) and v-show (hide element)
+* Class 10: Filters... in vue 3 are removed. Reemplace with method calls or computed properties.

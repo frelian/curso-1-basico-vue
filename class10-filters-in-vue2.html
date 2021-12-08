@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>Class 10 Filters in vue 2</title>
+</head>
+<body>
+
+	<main id="app">
+        <ul>
+            <li v-for="user in fullName"> {{ user | capitalLetters | shortened(15) }}</li>
+        </ul>
+	</div>
+
+	<script type="text/javascript" src="https://cdn.jsdelivr.net/npm/vue@2.6.14/dist/vue.js"></script>
+	<script>
+        const vm = new Vue({
+            el: "#app",
+            created() {
+                fetch(this.url)
+                    .then(answer => answer.json())
+                        .then(answer => this.users = answer.results.map(user => user.name));
+                
+            },
+            data: {
+                url: 'https://randomuser.me/api/?results=50',
+                users: []
+            },
+            computed: {
+                fullName() {
+                    return this.users.map(user => `Nombre: ${user.title}: ${user.first} ${user.last}`)
+                }
+            },
+            filters: {
+                capitalLetters(data) {
+                    return data.toUpperCase();
+                },
+                shortened(data, quantity) {
+                    return data.substring(0, quantity) + '...';
+                }
+            }
+        });
+		Vue.config.devtools = true;
+	</script>
+</body>
+</html>
