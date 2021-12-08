@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>Class 13 Form Input Bindings</title>
+    <style>
+        form {
+            font-family: sans-serif;
+        }
+
+        input:not([type="radio"]),
+        textarea,
+        label,
+        select {
+            display: block;
+        }
+
+        label,
+        input[type="submit"] {
+            margin-top: 20px;
+            font-style: italic;
+        }
+
+        
+        textarea,
+        select {
+            min-width: 200px;
+        }
+
+        .invalido {
+            border: 1px solid red;
+        }
+    </style>
+</head>
+<body>
+
+	<main id="app">
+
+        <form>
+            <label for="name">Name</label>
+            <input  v-model="form.name" type="text" 
+                required 
+                id="name"
+                :class="{ invalido: !form.name }"
+                >
+
+            <label for="lastName">Last name</label>
+            <input v-model="form.lastName" type="text" 
+                required 
+                id="lastName"
+                :class="{ invalido: !form.lastName }"
+                >
+
+            <label for="message">Message</label>
+            <textarea v-model="form.message" 
+                id="message" 
+                cols="30" 
+                rows="3" 
+                required
+                :class="{ invalido: !form.message }"
+                ></textarea>
+
+            <label for="">Time contact</label>
+            <span>Morning</span>
+            <input v-model="form.contact" type="radio" value="morning">
+            <span>Afternoon</span>
+            <input v-model="form.contact" type="radio" value="afternoon">
+            <span>Night</span>
+            <input v-model="form.contact" type="radio" value="night">
+
+            <label for="products">Product/s</label>
+            <select v-model="form.products" id="products" multiple>
+                <option value="product1">Product 1</option>
+                <option value="product2">Product 2</option>
+                <option value="product3">Product 3</option>
+            </select>
+
+            <label for="accept">Acceptance of conditions</label>
+            <span>Acccept the bla bla bla</span>
+            <input v-model="form.accept" type="checkbox" id="accept">
+            <input type="submit" value="Send" v-if="form.accept">
+
+        </form>
+
+        <hr>
+
+        <pre>{{ $data }}</pre>
+	</div>
+
+	<script src="https://cdn.jsdelivr.net/npm/vue@2.6.14/dist/vue.js"></script>
+	<script>
+        const vm = new Vue({
+            mounted() {
+                if (window.localStorage.getItem('form'))
+                    this.form = JSON.parse(window.localStorage.getItem('form'));
+            },
+            el: "#app",
+            data: {
+                form: {
+                    name: '',
+                    lastName: '',
+                    message: '',
+                    contact: '',
+                    products: ['product2'],
+                    accept: false,
+                },
+            },
+        });
+        vm.$watch('form', (newValue, oldValue) => {
+            window.localStorage.setItem('form', JSON.stringify(newValue));
+        }, { deep: true })
+		Vue.config.devtools = true;
+	</script>
+</body>
+</html>
