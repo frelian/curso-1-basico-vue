@@ -19,8 +19,8 @@
             el: "#app",
             created() {
                 fetch(this.url)
-                    .then(answer => answer.json())
-                        .then(answer => this.users = answer.results.map(user => user.name));
+                    .then(response => response.json())
+                        .then(response => this.users = response.results.map(user => user.name));
                 
             },
             data: {
