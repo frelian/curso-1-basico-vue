@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>Class 12 Class and Style Bindings</title>
+    <style>
+        .user-info {
+            text-align: center;
+            padding: 2rem;
+            border: 1px solid;
+            border-radius: 25px;
+            font-family: sans-serif;
+        }
+
+        .user-info--mobile {
+            text-align: center;
+            padding: 2rem;
+            border: 1px solid;
+            border-radius: 25px;
+            font-family: sans-serif;
+        }
+
+        .logged-in {
+            background-color: lightgreen;
+        }
+
+        .logged-out {
+            background-color: tomato;
+        }
+    </style>
+</head>
+<body>
+
+	<main id="app">
+
+        <span>Log-in/out</span>
+        <input v-model="logged" type="checkbox">
+
+        <!-- Sintaxis de objeto <article class="user-info" :class="{ 'logged-in':logged, 'logged-out': !logged }"> -->
+        <!-- Sintaxis de array <article class="user-info" :class="[baseClass]"> -->
+        <article class="user-info" :class="styles">
+            {{ message }}
+        </article>
+
+        <pre>{{ $data }}</pre>
+	</div>
+
+	<script src="https://cdn.jsdelivr.net/npm/vue@2.6.14/dist/vue.js"></script>
+	<script>
+        const vm = new Vue({
+            el: "#app",
+            data: {
+                logged: true,
+                messages: {
+                    in: "Logueado como @frelian.",
+                    out: "Te has desconectado.",
+                },
+                baseClass: 'user-info',
+            },
+            computed: {
+                message() {
+                    return this.logged ? this.messages.in : this.messages.out;
+                },
+                styles() {
+                    /*
+                        Alternativa 1:
+                        return {
+                            'logged-in': this.logged,
+                            'logged-out': !this.logged,
+                        }
+                    */
+                   /*
+                        Alternativa 2:
+                            return this.logged ? 'logged-in' : 'logged-out';
+                   */
+                    
+                   // Alternativa 3: usando template strings
+                   return `logged-${this.logged ? 'in' : 'out'}`;
+
+                },
+            }
+        });
+		Vue.config.devtools = true;
+	</script>
+</body>
+</html>
